@@ -2,9 +2,12 @@
 # Smart Lock Test
 
 ```mermaid
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
+stateDiagram-init
+    state if_state <<choice>>
+    [*] --> InitialState
+    InitialState --> if_state : EnterCode()
+    if_state --> Unlocked : Correct
+    if_state --> Locked : Incorrect
+    InitialState --> Locked : Locked()
+    InitialState --> Locked : Reset()
 ```
